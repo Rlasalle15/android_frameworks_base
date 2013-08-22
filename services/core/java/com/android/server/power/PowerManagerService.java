@@ -185,6 +185,7 @@ public final class PowerManagerService extends SystemService
     private DreamManagerInternal mDreamManager;
     private Light mAttentionLight;
     private Light mButtonsLight;
+    private Light mKeyboardLight;
 
     private int mButtonTimeout;
     private int mButtonBrightness;
@@ -469,6 +470,7 @@ public final class PowerManagerService extends SystemService
     private static native void nativeSetAutoSuspend(boolean enable);
     private static native void nativeSendPowerHint(int hintId, int data);
     private static native void nativeCpuBoost(int duration);
+    private boolean mKeyboardVisible = false;
 
     private SensorManager mSensorManager;
     private Sensor mProximitySensor;
