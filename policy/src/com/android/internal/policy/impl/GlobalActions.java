@@ -396,22 +396,10 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
 
         @Override
         public void onPress() {
-            final boolean quickbootEnabled = Settings.System.getInt(
-                    mContext.getContentResolver(), "enable_quickboot", 0) == 1;
-            // go to quickboot mode if enabled
-            if (quickbootEnabled) {
-                startQuickBoot();
-                return;
-            }
-            // shutdown by making sure radio and power are handled accordingly.
-            mWindowManagerFuncs.shutdown(true /* confirm */);
+            mWindowManagerFuncs.reboot();
         }
     }
 
-    private final class RebootAction extends SinglePressAction {
-        private RebootAction() {
-            super(com.android.internal.R.drawable.ic_lock_power_reboot,
-                    R.string.global_action_reboot);
         }
 
         @Override
@@ -1193,7 +1181,9 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
             if (!mHasTelephony) return;
             final boolean inAirplaneMode = serviceState.getState() == ServiceState.STATE_POWER_OFF;
             mAirplaneState = inAirplaneMode ? ToggleAction.State.On : ToggleAction.State.Off;
-            mAirplaneModeOn.updateState(mAirplaneState);
+            if (mAirplaneModeOn != null) {
+                mHandler.sendEmptyMessage(MESSAGE_REFRESH_AIRPLANEMODE);
+            }
             mAdapter.notifyDataSetChanged();
         }
     };
@@ -1217,6 +1207,7 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
     private static final int MESSAGE_DISMISS = 0;
     private static final int MESSAGE_REFRESH = 1;
     private static final int MESSAGE_SHOW = 2;
+    private static final int MESSAGE_REFRESH_AIRPLANEMODE = 3;
     private static final int DIALOG_DISMISS_DELAY = 300; // ms
 
     private Handler mHandler = new Handler() {
@@ -1235,6 +1226,10 @@ class GlobalActions implements DialogInterface.OnDismissListener, DialogInterfac
             case MESSAGE_SHOW:
                 handleShow();
                 break;
+            case MESSAGE_REFRESH_AIRPLANEMODE:
+	        mAirplaneModeOn.updateState(mAirplaneState);
+	        mAdapter.notifyDataSetChanged();
+	        break;
             }
         }
     };
