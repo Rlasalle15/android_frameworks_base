@@ -2697,6 +2697,892 @@ public final class Settings {
         public static final String BATTERY_LIGHT_FULL_COLOR = "battery_light_full_color";
 
         /**
+         * Give SMS notifications a breathing effect
+         * @hide
+         */
+        public static final String KEY_SMS_BREATH = "sms_breath";
+
+        /**
+         * Give Missed call notifications a breathing effect
+         * @hide
+         */
+        public static final String KEY_MISSED_CALL_BREATH = "missed_call_breath";
+
+        /**
+         * Give Voicemail notifications a breathing effect
+         * @hide
+         */
+        public static final String KEY_VOICEMAIL_BREATH = "voicemail_breath";
+
+        /**
+         * Sprint MWI Quirk: Show message wait indicator notifications
+         * @hide
+         */
+        public static final String ENABLE_MWI_NOTIFICATION = "enable_mwi_notification";
+
+        /**
+         * Show pointer location on screen?
+         * 0 = no
+         * 1 = yes
+         * @hide
+         */
+        public static final String POINTER_LOCATION = "pointer_location";
+
+        /**
+         * Show touch positions on screen?
+         * 0 = no
+         * 1 = yes
+         * @hide
+         */
+        public static final String SHOW_TOUCHES = "show_touches";
+
+        /**
+         * Log raw orientation data from
+         * {@link com.android.internal.policy.impl.WindowOrientationListener} for use with the
+         * orientationplot.py tool.
+         * 0 = no
+         * 1 = yes
+         * @hide
+         */
+        public static final String WINDOW_ORIENTATION_LISTENER_LOG =
+                "window_orientation_listener_log";
+
+        /**
+         * @deprecated Use {@link android.provider.Settings.Global#POWER_SOUNDS_ENABLED}
+         * instead
+         * @hide
+         */
+        @Deprecated
+        public static final String POWER_SOUNDS_ENABLED = Global.POWER_SOUNDS_ENABLED;
+
+        /**
+         * @deprecated Use {@link android.provider.Settings.Global#DOCK_SOUNDS_ENABLED}
+         * instead
+         * @hide
+         */
+        @Deprecated
+        public static final String DOCK_SOUNDS_ENABLED = Global.DOCK_SOUNDS_ENABLED;
+
+        /**
+         * Check the proximity sensor during wakeup
+         * @hide
+         */
+        public static final String PROXIMITY_ON_WAKE = "proximity_on_wake";
+
+        /**
+         * Whether lid wakes the device
+         * @hide
+         */
+        public static final String LID_CONTROLS_WAKE = "lid_controls_wake";
+
+        /**
+         * Whether lid puts the device to sleep
+         * @hide
+         */
+        public static final String LID_CONTROLS_SLEEP = "lid_controls_sleep";
+
+        /**
+         * Whether to play sounds when the keyguard is shown and dismissed.
+         * @hide
+         */
+        public static final String LOCKSCREEN_SOUNDS_ENABLED = "lockscreen_sounds_enabled";
+
+        /**
+         * Whether the lockscreen should be completely disabled.
+         * @hide
+         */
+        public static final String LOCKSCREEN_DISABLED = "lockscreen.disabled";
+
+        /**
+         * @deprecated Use {@link android.provider.Settings.Global#LOW_BATTERY_SOUND}
+         * instead
+         * @hide
+         */
+        @Deprecated
+        public static final String LOW_BATTERY_SOUND = Global.LOW_BATTERY_SOUND;
+
+        /**
+         * @deprecated Use {@link android.provider.Settings.Global#DESK_DOCK_SOUND}
+         * instead
+         * @hide
+         */
+        @Deprecated
+        public static final String DESK_DOCK_SOUND = Global.DESK_DOCK_SOUND;
+
+        /**
+         * @deprecated Use {@link android.provider.Settings.Global#DESK_UNDOCK_SOUND}
+         * instead
+         * @hide
+         */
+        @Deprecated
+        public static final String DESK_UNDOCK_SOUND = Global.DESK_UNDOCK_SOUND;
+
+        /**
+         * @deprecated Use {@link android.provider.Settings.Global#CAR_DOCK_SOUND}
+         * instead
+         * @hide
+         */
+        @Deprecated
+        public static final String CAR_DOCK_SOUND = Global.CAR_DOCK_SOUND;
+
+        /**
+         * @deprecated Use {@link android.provider.Settings.Global#CAR_UNDOCK_SOUND}
+         * instead
+         * @hide
+         */
+        @Deprecated
+        public static final String CAR_UNDOCK_SOUND = Global.CAR_UNDOCK_SOUND;
+
+        /**
+         * @deprecated Use {@link android.provider.Settings.Global#LOCK_SOUND}
+         * instead
+         * @hide
+         */
+        @Deprecated
+        public static final String LOCK_SOUND = Global.LOCK_SOUND;
+
+        /**
+         * @deprecated Use {@link android.provider.Settings.Global#UNLOCK_SOUND}
+         * instead
+         * @hide
+         */
+        @Deprecated
+        public static final String UNLOCK_SOUND = Global.UNLOCK_SOUND;
+
+        /**
+         * Receive incoming SIP calls?
+         * 0 = no
+         * 1 = yes
+         * @hide
+         */
+        public static final String SIP_RECEIVE_CALLS = "sip_receive_calls";
+
+        /**
+         * Call Preference String.
+         * "SIP_ALWAYS" : Always use SIP with network access
+         * "SIP_ADDRESS_ONLY" : Only if destination is a SIP address
+         * @hide
+         */
+        public static final String SIP_CALL_OPTIONS = "sip_call_options";
+
+        /**
+         * One of the sip call options: Always use SIP with network access.
+         * @hide
+         */
+        public static final String SIP_ALWAYS = "SIP_ALWAYS";
+
+        /**
+         * One of the sip call options: Only if destination is a SIP address.
+         * @hide
+         */
+        public static final String SIP_ADDRESS_ONLY = "SIP_ADDRESS_ONLY";
+
+        /**
+         * @deprecated Use SIP_ALWAYS or SIP_ADDRESS_ONLY instead.  Formerly used to indicate that
+         * the user should be prompted each time a call is made whether it should be placed using
+         * SIP.  The {@link com.android.providers.settings.DatabaseHelper} replaces this with
+         * SIP_ADDRESS_ONLY.
+         * @hide
+         */
+        @Deprecated
+        public static final String SIP_ASK_ME_EACH_TIME = "SIP_ASK_ME_EACH_TIME";
+
+        /**
+         * Pointer speed setting.
+         * This is an integer value in a range between -7 and +7, so there are 15 possible values.
+         *   -7 = slowest
+         *    0 = default speed
+         *   +7 = fastest
+         * @hide
+         */
+        public static final String POINTER_SPEED = "pointer_speed";
+
+        /**
+         * Enable/Disable screenshot sound
+         * @hide
+         */
+        public static final String SCREENSHOT_SOUND = "screenshot_sound";
+
+        /**
+         * Show icon when stylus is used?
+         * 0 = no
+         * 1 = yes
+         * @hide
+         */
+        public static final String STYLUS_ICON_ENABLED = "stylus_icon_enabled";
+
+        /**
+         * Enable Stylus Gestures
+         *
+         * @hide
+         */
+        public static final String ENABLE_STYLUS_GESTURES = "enable_stylus_gestures";
+
+        /**
+         * Left Swipe Action
+         *
+         * @hide
+         */
+        public static final String GESTURES_LEFT_SWIPE = "gestures_left_swipe";
+
+        /**
+         * Right Swipe Action
+         *
+         * @hide
+         */
+        public static final String GESTURES_RIGHT_SWIPE = "gestures_right_swipe";
+
+        /**
+         * Up Swipe Action
+         *
+         * @hide
+         */
+        public static final String GESTURES_UP_SWIPE = "gestures_up_swipe";
+
+        /**
+         * down Swipe Action
+         *
+         * @hide
+         */
+        public static final String GESTURES_DOWN_SWIPE = "gestures_down_swipe";
+
+        /**
+         * Long press Action
+         *
+         * @hide
+         */
+        public static final String GESTURES_LONG_PRESS = "gestures_long_press";
+
+        /**
+         * double tap Action
+         *
+         * @hide
+         */
+        public static final String GESTURES_DOUBLE_TAP = "gestures_double_tap";
+
+        /**
+         * Whether lock-to-app will be triggered by long-press on recents.
+         * @hide
+         */
+        public static final String LOCK_TO_APP_ENABLED = "lock_to_app_enabled";
+
+        /**
+         * @hide
+         * Whether national data roaming should be used.
+         * @hide
+         */
+        public static final String MVNO_ROAMING = "mvno_roaming";
+
+        /**
+         * Enable looking up of phone numbers of nearby places
+         *
+         * @hide
+         */
+        public static final String ENABLE_FORWARD_LOOKUP = "enable_forward_lookup";
+
+        /**
+         * Enable looking up of phone numbers of people
+         *
+         * @hide
+         */
+        public static final String ENABLE_PEOPLE_LOOKUP = "enable_people_lookup";
+
+        /**
+         * Enable looking up of information of phone numbers not in the contacts
+         *
+         * @hide
+         */
+        public static final String ENABLE_REVERSE_LOOKUP = "enable_reverse_lookup";
+
+        /**
+         * The forward lookup provider
+         *
+         * @hide
+         */
+        public static final String FORWARD_LOOKUP_PROVIDER = "forward_lookup_provider";
+
+        /**
+         * The people lookup provider
+         *
+         * @hide
+         */
+        public static final String PEOPLE_LOOKUP_PROVIDER = "people_lookup_provider";
+
+        /**
+         * The reverse lookup provider
+         *
+         * @hide
+         */
+        public static final String REVERSE_LOOKUP_PROVIDER = "reverse_lookup_provider";
+
+        /**
+         * The OpenCNAM paid account ID
+         *
+         * @hide
+         */
+        public static final String DIALER_OPENCNAM_ACCOUNT_SID = "dialer_opencnam_account_sid";
+
+        /**
+         * The OpenCNAM authentication token
+         *
+         * @hide
+         */
+        public static final String DIALER_OPENCNAM_AUTH_TOKEN = "dialer_opencnam_auth_token";
+
+        /**
+         * Action to perform when the home key is long-pressed.
+         * (Default can be configured via config_longPressOnHomeBehavior)
+         * 0 - Nothing
+         * 1 - Menu
+         * 2 - App-switch
+         * 3 - Search
+         * 4 - Voice search
+         * 5 - In-app search
+         * 6 - Launch Camera
+         * 7 - Action Sleep
+         * 8 - Last app
+         * @hide
+         */
+        public static final String KEY_HOME_LONG_PRESS_ACTION = "key_home_long_press_action";
+
+        /**
+         * Action to perform when the home key is double-tapped.
+         * (Default can be configured via config_doubleTapOnHomeBehavior)
+         * (See KEY_HOME_LONG_PRESS_ACTION for valid values)
+         * @hide
+         */
+        public static final String KEY_HOME_DOUBLE_TAP_ACTION = "key_home_double_tap_action";
+
+        /**
+         * Action to perform when the menu key is pressed. (Default is 1)
+         * (See KEY_HOME_LONG_PRESS_ACTION for valid values)
+         * @hide
+         */
+        public static final String KEY_MENU_ACTION = "key_menu_action";
+
+        /**
+         * Action to perform when the menu key is long-pressed.
+         * (Default is 0 on devices with a search key, 3 on devices without)
+         * (See KEY_HOME_LONG_PRESS_ACTION for valid values)
+         * @hide
+         */
+        public static final String KEY_MENU_LONG_PRESS_ACTION = "key_menu_long_press_action";
+
+        /**
+         * Action to perform when the assistant (search) key is pressed. (Default is 3)
+         * (See KEY_HOME_LONG_PRESS_ACTION for valid values)
+         * @hide
+         */
+        public static final String KEY_ASSIST_ACTION = "key_assist_action";
+
+        /**
+         * Action to perform when the assistant (search) key is long-pressed. (Default is 4)
+         * (See KEY_HOME_LONG_PRESS_ACTION for valid values)
+         * @hide
+         */
+        public static final String KEY_ASSIST_LONG_PRESS_ACTION = "key_assist_long_press_action";
+
+        /**
+         * Action to perform when the app switch key is pressed. (Default is 2)
+         * (See KEY_HOME_LONG_PRESS_ACTION for valid values)
+         * @hide
+         */
+        public static final String KEY_APP_SWITCH_ACTION = "key_app_switch_action";
+
+        /**
+         * Action to perform when the app switch key is long-pressed. (Default is 0)
+         * (See KEY_HOME_LONG_PRESS_ACTION for valid values)
+         * @hide
+         */
+        public static final String KEY_APP_SWITCH_LONG_PRESS_ACTION = "key_app_switch_long_press_action";
+
+        /**
+         * Whether to wake the screen with the home key, the value is boolean.
+         * @hide
+         */
+        public static final String HOME_WAKE_SCREEN = "home_wake_screen";
+
+        /**
+         * Whether to wake the screen with the back key, the value is boolean.
+         * @hide
+         */
+        public static final String BACK_WAKE_SCREEN = "back_wake_screen";
+
+        /**
+         * Whether to wake the screen with the menu key, the value is boolean.
+         * @hide
+         */
+        public static final String MENU_WAKE_SCREEN = "menu_wake_screen";
+
+        /**
+         * Whether to wake the screen with the assist key, the value is boolean.
+         * @hide
+         */
+        public static final String ASSIST_WAKE_SCREEN = "assist_wake_screen";
+
+        /**
+         * Whether to wake the screen with the app switch key, the value is boolean.
+         * @hide
+         */
+        public static final String APP_SWITCH_WAKE_SCREEN = "app_switch_wake_screen";
+
+        /**
+         * Whether to wake the screen with the volume keys, the value is boolean.
+         * @hide
+         */
+        public static final String VOLUME_WAKE_SCREEN = "volume_wake_screen";
+
+        /**
+         * Whether the phone ringtone should be played in an increasing manner
+         * @hide
+         */
+        public static final String INCREASING_RING = "increasing_ring";
+
+        /**
+         * Start volume fraction for increasing ring volume
+         * @hide
+         */
+        public static final String INCREASING_RING_START_VOLUME = "increasing_ring_start_vol";
+
+        /**
+         * Ramp up time (seconds) for increasing ring
+         * @hide
+         */
+        public static final String INCREASING_RING_RAMP_UP_TIME = "increasing_ring_ramp_up_time";
+
+        /**
+         * I am the lolrus.
+         * <p>
+         * Nonzero values indicate that the user has a bukkit.
+         * Backward-compatible with <code>PrefGetPreference(prefAllowEasterEggs)</code>.
+         * @hide
+         */
+        public static final String EGG_MODE = "egg_mode";
+
+        /**
+         * Whether to hide the clock, show it in the right or left
+         * position or show it in the center
+         * 0: don't show the clock
+         * 1: show the clock in the right position (LTR)
+         * 2: show the clock in the center
+         * 3: show the clock in the left position (LTR)
+         * default: 1
+         * @hide
+         */
+        public static final String STATUS_BAR_CLOCK = "status_bar_clock";
+
+        /**
+         * Display style of AM/PM next to clock in status bar
+         * 0: Normal display (Eclair stock)
+         * 1: Small display (Froyo stock)
+         * 2: No display (Gingerbread/ICS stock)
+         * default: 2
+         * @hide
+         */
+        public static final String STATUS_BAR_AM_PM = "status_bar_am_pm";
+
+        /**
+         * Shows custom date before clock time
+         * 0 - No Date
+         * 1 - Small Date
+         * 2 - Normal Date
+         * @hide
+         */
+        public static final String STATUS_BAR_DATE = "status_bar_date";
+
+        /**
+         * Sets the date string style
+         * 0 - Regular style
+         * 1 - Lowercase
+         * 2 - Uppercase
+         * @hide
+         */
+        public static final String STATUS_BAR_DATE_STYLE = "status_bar_date_style";
+
+        /**
+         * Stores the java DateFormat string for the date
+         * @hide
+         */
+        public static final String STATUS_BAR_DATE_FORMAT = "status_bar_date_format";
+
+        /**
+         * Setting for clock color
+         * @hide
+         */
+        public static final String STATUSBAR_CLOCK_COLOR = "statusbar_clock_color";
+
+        /**
+         * Settings for clock font style
+         * @hide
+         */
+        public static final String STATUSBAR_CLOCK_FONT_STYLE = "statusbar_clock_font_style";
+
+        /**
+         * Display second in the Clock
+         * @hide
+         */
+        public static final String CLOCK_USE_SECOND = "clock_use_second";
+
+        /**
+         * MediaScanner behavior on boot.
+         * 0 = enabled
+         * 1 = ask (notification)
+         * 2 = disabled
+         * @hide
+         */
+        public static final String MEDIA_SCANNER_ON_BOOT = "media_scanner_on_boot";
+
+        /**
+         * Display style of the status bar battery information
+         * 0: Display the battery an icon in portrait mode
+         * 2: Display the battery as a circle
+         * 4: Hide the battery status information
+         * 5: Display the battery an icon in landscape mode
+         * 6: Display the battery as plain text
+         * default: 0
+         * @hide
+         */
+        public static final String STATUS_BAR_BATTERY_STYLE = "status_bar_battery_style";
+
+        /**
+         * Status bar battery %
+         * 0: Hide the battery percentage
+         * 1: Display the battery percentage inside the icon
+         * 2: Display the battery percentage next to the icon
+         * @hide
+         */
+        public static final String STATUS_BAR_SHOW_BATTERY_PERCENT = "status_bar_show_battery_percent";
+
+        /**
+         * Disable FC Notifications
+         * @hide
+         */
+        public static final String DISABLE_FC_NOTIFICATIONS = "disable_fc_notifications";
+
+        /**
+         * Visibility of SIM icons of unpopulated SIM slots in MSIM mode
+         * 0: Hide unpopulated SIM icons
+         * 1: Show unpopulated SIM icons
+         * @hide
+         */
+        public static final String STATUS_BAR_MSIM_SHOW_EMPTY_ICONS = "status_bar_show_empty_sims";
+
+        /**
+         * Enable statusbar double tap gesture on to put device to sleep
+         * @hide
+         */
+        public static final String DOUBLE_TAP_SLEEP_GESTURE = "double_tap_sleep_gesture";
+
+        /**
+         * Boolean value on whether to show weather in the statusbar
+         * @hide
+         */
+        public static final String STATUS_BAR_SHOW_WEATHER = "status_bar_show_weather";
+
+        /**
+         * show clear all recents button
+         *  @hide
+         */
+        public static final String SHOW_CLEAR_ALL_RECENTS = "show_clear_all_recents";
+
+        /**
+         * location of the clear all rectents button
+         * @hide
+         */
+        public static final String RECENTS_CLEAR_ALL_LOCATION = "recents_clear_all_location";
+
+        /**
+          * Volume keys control cursor in text fields (default is 0)
+          * 0 - Disabled
+          * 1 - Volume up/down moves cursor left/right
+          * 2 - Volume up/down moves cursor right/left
+          * @hide
+          */
+         public static final String VOLUME_KEY_CURSOR_CONTROL = "volume_key_cursor_control";
+
+        /**
+         * Show search bar in recents
+         * @hide
+         */
+        public static final String RECENTS_SHOW_SEARCH_BAR = "recents_show_search_bar";
+
+        /**
+         * Whether to enable voice wakeup.  The value is boolean (1 or 0).
+         * @hide
+         */
+        public static final String VOICE_WAKEUP = "voice_wakeup";
+
+        /**
+         * Hide notification instead of remove when swiping headsup
+         * @hide
+         */
+        public static final String HEADS_UP_DISMISS_ON_REMOVE = "heads_up_dismiss_on_remove";
+
+        /**
+         * Hide notification 1 second after touching outside
+         * @hide
+         */
+        public static final String HEADS_UP_TOUCH_OUTSIDE = "heads_up_touch_outside";
+
+        /**
+         * An intent (a flattened Uri String) to launch when user voice launch
+         * action is detected. An empty or null string will launch the default
+         * voice search activity.
+         * @hide
+         */
+        public static final String VOICE_LAUNCH_INTENT = "voice_launch_intent";
+
+        /**
+         * Whether to mute annoying notifications
+         * @hide
+         */
+        public static final String MUTE_ANNOYING_NOTIFICATIONS_THRESHOLD =
+                "mute_annoying_notifications_threshold";
+
+        /**
+         * Whether navigation bar is placed on the left side in landscape mode
+         * @hide
+         */
+        public static final String NAVBAR_LEFT_IN_LANDSCAPE = "navigation_bar_left";
+
+        /**
+         * Timeout for volume panel
+         * @hide
+         */
+        public static final String VOLUME_PANEL_TIMEOUT = "volume_panel_timeout";
+
+        /**
+         * Force expanded notifications on all apps that support it.
+         * @hide
+         */
+        public static final String FORCE_EXPANDED_NOTIFICATIONS = "force_expanded_notifications";
+
+        /**
+         * Locale for secondary overlay on dialer for t9 search input
+         * @hide
+         */
+        public static final String T9_SEARCH_INPUT_LOCALE = "t9_search_input_locale";
+
+         /**
+         * Whether to dismiss all recents tasks
+         * @hide
+         */
+        public static final String RECENTS_CLEAR_ALL_DISMISS_ALL = "recents_clear_all_dismiss_all";
+
+        /**
+         * Color temperature of the display during the day
+         * @hide
+         */
+        public static final String DISPLAY_TEMPERATURE_DAY = "display_temperature_day";
+
+        /**
+         * Color temperature of the display at night
+         * @hide
+         */
+        public static final String DISPLAY_TEMPERATURE_NIGHT = "display_temperature_night";
+
+        /**
+         * Display color temperature adjustment mode, one of DAY (default), NIGHT, or AUTO.
+         * @hide
+         */
+        public static final String DISPLAY_TEMPERATURE_MODE = "display_temperature_mode";
+
+        /**
+         * Automatic outdoor mode
+         * @hide
+         */
+        public static final String DISPLAY_AUTO_OUTDOOR_MODE = "display_auto_outdoor_mode";
+
+        /**
+         * Use display power saving features such as CABC or CABL
+         * @hide
+         */
+        public static final String DISPLAY_LOW_POWER = "display_low_power";
+
+        /**
+         * Use color enhancement feature of display
+         * @hide
+         */
+        public static final String DISPLAY_COLOR_ENHANCE = "display_color_enhance";
+
+        /**
+         * Manual display color adjustments (RGB values as floats, separated by spaces)
+         * @hide
+         */
+        public static final String DISPLAY_COLOR_ADJUSTMENT = "display_color_adjustment";
+
+        /**
+         * Did we tell about how they can stop breaking their eyes?
+         * @hide
+         */
+        public static final String LIVE_DISPLAY_HINTED = "live_display_hinted";
+
+        /**
+         * Whether to prevent loud volume levels when headset is first plugged in.
+         * @hide
+         */
+        public static final String SAFE_HEADSET_VOLUME = "safe_headset_volume";
+
+        /**
+         * Change the screenshot delay
+         * @hide
+         */
+        public static final String SCREENSHOT_DELAY = "screenshot_delay";
+
+        /**
+         * Whether to show the weather info on the lock screen
+         * @hide
+         */
+        public static final String LOCK_SCREEN_SHOW_WEATHER = "lock_screen_show_weather";
+
+        /**
+         * Whether to show the weather location lock screen
+         * @hide
+         */
+        public static final String LOCK_SCREEN_SHOW_WEATHER_LOCATION = "lock_screen_show_weather_location";
+		
+        /**
+         * Whether to show the weather update timestamp on the lock screen
+         * @hide
+         */
+        public static final String LOCK_SCREEN_SHOW_WEATHER_TIMESTAMP = "lock_screen_show_weather_timestamp";
+
+        /**
+         * Weather condition icon on the lock screen
+         * 0: monochrome
+         * 1: colored
+         * 2: vclouds
+         * default: 0
+         * @hide
+         */
+        public static final String LOCK_SCREEN_WEATHER_CONDITION_ICON = "lock_screen_weather_condition_icon";
+
+        /**
+         * Whether to colorize all weather condition icons on the lock screen
+         * @hide
+         */
+        public static final String LOCK_SCREEN_WEATHER_COLORIZE_ALL_ICONS = "lock_screen_weather_colorize_all_icons";
+
+        /**
+         * Color of the weather text on the lock screen
+         * @hide
+         */
+        public static final String LOCK_SCREEN_WEATHER_TEXT_COLOR = "lock_screen_weather_text_color";
+
+        /**
+         * Color of the weather condition icons on the lock screen
+         * @hide
+         */
+        public static final String LOCK_SCREEN_WEATHER_ICON_COLOR = "lock_screen_weather_icon_color";
+
+        /**
+         * Override and forcefully disable the fullscreen keyboard
+         * @hide
+         */
+        public static final String DISABLE_FULLSCREEN_KEYBOARD = "disable_fullscreen_keyboard";
+
+        /**
+         * Automatic keyboard rotation timeout.  0 to disable completely.
+         * @hide
+         */
+        public static final String KEYBOARD_ROTATION_TIMEOUT = "keyboard_rotation_timeout";
+
+        /**
+         * Forces formal text input.  1 to replace emoticon key with enter key.
+         * @hide
+         */
+        public static final String FORMAL_TEXT_INPUT = "formal_text_input";
+
+        /**
+         *  Enable navigation bar double tap gesture on to put device to sleep
+         * @hide
+         */
+        public static final String DOUBLE_TAP_SLEEP_NAVBAR = "double_tap_sleep_navbar";
+
+        /**
+         * Network traffic indicator, goes from least to greatest significant bitwise
+         * 0 = Display up-stream traffic if set
+         * 1 = Display down-stream traffic if set
+         * 2 = Show as Byte/s if set
+         * 16-31 = Refresh interval(ms) min: 250 max: 32750 default: 1000
+         * @hide
+         */
+        public static final String NETWORK_TRAFFIC_STATE = "network_traffic_state";
+
+        /** Whether to collapse panel when quick settings tile is pressed.
+         *
+         * @hide
+         */
+        public static final String NOTIFICATION_LIGHT_PULSE_CALL_LED_OFF =
+                "notification_light_pulse_call_led_off";
+        /**
+         * What color to use for the voicemail notification LED
+         * @hide
+         */
+        public static final String NOTIFICATION_LIGHT_PULSE_VMAIL_COLOR =
+                "notification_light_pulse_vmail_color";
+
+        /**
+         * How long to flash the voicemail notification LED
+         * @hide
+         */
+        public static final String NOTIFICATION_LIGHT_PULSE_VMAIL_LED_ON =
+                "notification_light_pulse_vmail_led_on";
+
+        /**
+         * How long to wait between flashes for the voicemail notification LED
+         * @hide
+         */
+        public static final String NOTIFICATION_LIGHT_PULSE_VMAIL_LED_OFF =
+                "notification_light_pulse_vmail_led_off";
+
+        /**
+         * Whether to use the custom LED values for the notification pulse LED.
+         * @hide
+         */
+        public static final String NOTIFICATION_LIGHT_PULSE_CUSTOM_ENABLE =
+                "notification_light_pulse_custom_enable";
+
+        /**
+         * Which custom LED values to use for the notification pulse LED.
+         * @hide
+         */
+        public static final String NOTIFICATION_LIGHT_PULSE_CUSTOM_VALUES =
+                "notification_light_pulse_custom_values";
+
+        /**
+         * Whether the battery light should be enabled (if hardware supports it)
+         * The value is boolean (1 or 0).
+         * @hide
+         */
+        public static final String BATTERY_LIGHT_ENABLED = "battery_light_enabled";
+
+        /**
+         * Whether the battery LED should repeatedly flash when the battery is low
+         * on charge. The value is boolean (1 or 0).
+         * @hide
+         */
+        public static final String BATTERY_LIGHT_PULSE = "battery_light_pulse";
+
+        /**
+         * What color to use for the battery LED while charging - low
+         * @hide
+         */
+        public static final String BATTERY_LIGHT_LOW_COLOR = "battery_light_low_color";
+
+        /**
+         * What color to use for the battery LED while charging - medium
+         * @hide
+         */
+        public static final String BATTERY_LIGHT_MEDIUM_COLOR = "battery_light_medium_color";
+
+        /**
+         * What color to use for the battery LED while charging - full
+         * @hide
+         */
+        public static final String BATTERY_LIGHT_FULL_COLOR = "battery_light_full_color";
+
+        /**
          * Sprint MWI Quirk: Show message wait indicator notifications
          * @hide
          */
