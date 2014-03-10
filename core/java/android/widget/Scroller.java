@@ -19,11 +19,6 @@ package android.widget;
 import android.content.Context;
 import android.hardware.SensorManager;
 import android.os.Build;
-<<<<<<< HEAD
-import android.os.PowerManager;
-import android.util.FloatMath;
-=======
->>>>>>> c6df08d... Switch from FloatMath -> Math and Math.hypot where possible
 import android.view.ViewConfiguration;
 import android.view.animation.AnimationUtils;
 import android.view.animation.Interpolator;
@@ -186,6 +181,7 @@ public class Scroller  {
      * not to support progressive "flywheel" behavior in flinging.
      */
     public Scroller(Context context, Interpolator interpolator, boolean flywheel) {
+        boolean bIsPerfBoostEnabled = false;
         mFinished = true;
         if (interpolator == null) {
             mInterpolator = new ViscousFluidInterpolator();
@@ -217,7 +213,6 @@ public class Scroller  {
             mPerf = new Performance();
         }
 
-        mPm = (PowerManager)context.getSystemService(Context.POWER_SERVICE);
     }
 
     /**
