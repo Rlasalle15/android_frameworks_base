@@ -2256,7 +2256,6 @@
 
   <java-symbol type="bool" name="config_enable_mms_with_mobile_data_off" />
 
-<<<<<<< HEAD
   <!-- cpu boost for AppLaunch -->
   <java-symbol type="bool" name="config_enableCpuBoostForAppLaunch" />
   <java-symbol type="integer" name="launchboost_timeout_param" />
@@ -2312,5 +2311,16 @@
 
   <!-- cpu boost for overscroller fling -->
   <java-symbol type="bool" name="config_enableCpuBoostForOverScrollerFling" />
+
+  <!-- cpu boost for horizontal scroll -->
+  <java-symbol type="bool" name="config_enableCpuBoostForScroller" />
+
+  <!-- cpu boost for AppLaunch -->
+  <java-symbol type="bool" name="config_enableCpuBoostForAppLaunch" />
+  <java-symbol type="integer" name="launchboost_timeout_param" />
+  <java-symbol type="integer" name="launchboost_schedboost_param" />
+  <java-symbol type="integer" name="launchboost_cpuboost_param" />
+  <java-symbol type="integer" name="launchboost_pcdisbl_param" />
+  <java-symbol type="integer" name="launchboost_ksmboost_param" />
 
 </resources>
