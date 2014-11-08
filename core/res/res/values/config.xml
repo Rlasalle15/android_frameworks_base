@@ -2192,6 +2192,11 @@
     <integer name="flingboost_timeout_param">600</integer>
     <integer name="flingboost_schedboost_param">0</integer>
     <integer name="flingboost_cpuboost_param">0x20D</integer>
+
+    <bool name="config_enableCpuBoostForOverScrollerFling">false</bool>
+    <integer name="flingboost_timeout_param">0</integer>
+    <integer name="flingboost_schedboost_param">0</integer>
+    <integer name="flingboost_cpuboost_param">0</integer>
     <integer name="flingboost_pcdisbl_param">0</integer>
     <integer name="flingboost_ksmboost_param">0</integer>
 
@@ -2200,6 +2205,11 @@
     <integer name="scrollboost_timeout_param">600</integer>
     <integer name="scrollboost_schedboost_param">0</integer>
     <integer name="scrollboost_cpuboost_param">0x20D</integer>
+
+    <bool name="config_enableCpuBoostForScroller">false</bool>
+    <integer name="scrollboost_timeout_param">0</integer>
+    <integer name="scrollboost_schedboost_param">0</integer>
+    <integer name="scrollboost_cpuboost_param">0</integer>
     <integer name="scrollboost_pcdisbl_param">0</integer>
     <integer name="scrollboost_ksmboost_param">0</integer>
 
@@ -2312,5 +2322,4 @@
 
     <!-- Whether cpu boost is enabled for horizontal scroll. -->
     <bool name="config_enableCpuBoostForScroller">false</bool>
-
 </resources>
