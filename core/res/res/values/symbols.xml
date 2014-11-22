@@ -2293,6 +2293,7 @@
   <java-symbol type="bool" name="config_use_sim_language_file" />
   <java-symbol type="bool" name="config_LTE_eri_for_network_name" />
   <java-symbol type="bool" name="config_defaultInTouchMode" />
+<<<<<<< HEAD
 
   <!-- From SignalStrength -->
   <java-symbol type="integer" name="config_LTE_RSRP_threshold_type" />
@@ -2353,4 +2354,11 @@
   <java-symbol type="integer" name="animationboost_schedboost_param" />
   <java-symbol type="integer" name="animationboost_cpuboost_param" />
 
+  <!-- Power menu reboot -->
+  <java-symbol name="reboot_confirm" type="string" />
+  <java-symbol name="reboot_title" type="string" />
+  <java-symbol name="ic_lock_power_reboot" type="drawable" />
+  <java-symbol name="global_action_reboot" type="string" />
+  <java-symbol name="ic_lock_power_screenshot" type="drawable" />
+  <java-symbol name="global_action_screenshot" type="string" />
 </resources>
