@@ -2352,4 +2352,6 @@
   <java-symbol type="integer" name="animationboost_schedboost_param" />
   <java-symbol type="integer" name="animationboost_cpuboost_param" />
 
+  <!-- IME Switch -->
+  <java-symbol type="bool" name="config_show_IMESwitcher"/>
 </resources>

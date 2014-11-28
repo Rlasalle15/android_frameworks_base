@@ -2355,4 +2355,8 @@
 
     <!-- Boolean to enable stk functionality on Samsung phones -->
     <bool name="config_samsung_stk">false</bool>
+
+    <!-- Setting to false will disable IME switcher implementation -->
+    <bool name="config_show_IMESwitcher">true</bool>
+
 </resources>
