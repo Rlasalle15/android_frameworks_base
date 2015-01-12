@@ -3205,6 +3205,13 @@ public final class Settings {
         public static final String POWERMENU_POWER = "powermenu_power";
 
         /**
+         * Should the alarm icon be show in the statusbar
+         *
+         * @hide
+         */
+        public static final String STATUSBAR_SHOW_ALARM_ICON = "statusbar_show_alarm_icon";
+
+        /**
          * Settings to backup. This is here so that it's in the same place as the settings
          * keys and easy to update.
          *
