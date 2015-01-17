@@ -117,9 +117,7 @@
     <integer name="quick_settings_user_time_settings_tile_span">1</integer>
 
     <!-- The default tiles to display in QuickSettings -->
-    <string name="quick_settings_tiles_default" translatable="false">
-        wifi,bt,inversion,cell,airplane,rotation,flashlight,location,cast,hotspot
-    </string>
+    <string name="quick_settings_tiles_default" translatable="false">wifi,bt,cell,airplane,rotation,flashlight,location,cast,hotspot,inversion,immersive,notifications</string>
 
     <!-- The tiles to display in QuickSettings -->
     <string name="quick_settings_tiles" translatable="false">default</string>
@@ -343,4 +341,3 @@
     <integer name="shutteranimationboost_cpuboost_param">0x20D</integer>
 
 </resources>
-
