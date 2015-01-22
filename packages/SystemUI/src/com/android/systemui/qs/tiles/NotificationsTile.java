@@ -49,13 +49,14 @@ import com.android.systemui.volume.ZenModePanel;
 
 /** Quick settings tile: Notifications **/
 public class NotificationsTile extends QSTile<NotificationsTile.NotificationsState> {
+    public static final String SPEC = "notifications";
     private final ZenModeController mZenController;
     private final AudioManager mAudioManager;
 
     private boolean mListening;
 
     public NotificationsTile(Host host) {
-        super(host);
+        super(host, SPEC);
         mZenController = host.getZenModeController();
         mAudioManager = (AudioManager) mContext.getSystemService(Context.AUDIO_SERVICE);
     }
@@ -85,8 +86,13 @@ public class NotificationsTile extends QSTile<NotificationsTile.NotificationsSta
     }
 
     @Override
-    protected void handleClick() {
+    protected void handleToggleClick() {
         showDetail(true);
+    }
+
+    @Override
+    protected void handleDetailClick() {
+        handleToggleClick();
     }
 
     @Override
