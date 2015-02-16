@@ -117,55 +117,22 @@ class MPlayerListener : public MediaPlayerListener
     }
 };
 
-static long getFreeMemory(void)
-{
-    int fd = open("/proc/meminfo", O_RDONLY);
-    const char* const sums[] = { "MemFree:", "Cached:", NULL };
-    const int sumsLen[] = { strlen("MemFree:"), strlen("Cached:"), 0 };
-    int num = 2;
+static void setPowerHint(int durationMs) {
+    int rc;
+    power_module_t *power_module = NULL;
 
-    if (fd < 0) {
-        ALOGW("Unable to open /proc/meminfo");
-        return -1;
+    rc = hw_get_module(POWER_HARDWARE_MODULE_ID,
+            (const hw_module_t **)&power_module);
+    if (rc) {
+        ALOGE("%s: Failed to obtain reference to power module %s\n",
+                __func__, strerror(-rc));
+        return;
     }
 
-    char buffer[256];
-    const int len = read(fd, buffer, sizeof(buffer)-1);
-    close(fd);
-
-    if (len < 0) {
-        ALOGW("Unable to read /proc/meminfo");
-        return -1;
+    if (power_module && power_module->powerHint) {
+        power_module->powerHint(power_module, POWER_HINT_CPU_BOOST,
+                (void *)(static_cast<int64_t>(durationMs)));
     }
-    buffer[len] = 0;
-
-    size_t numFound = 0;
-    long mem = 0;
-
-    char* p = buffer;
-    while (*p && numFound < num) {
-        int i = 0;
-        while (sums[i]) {
-            if (strncmp(p, sums[i], sumsLen[i]) == 0) {
-                p += sumsLen[i];
-                while (*p == ' ') p++;
-                char* num = p;
-                while (*p >= '0' && *p <= '9') p++;
-                if (*p != 0) {
-                    *p = 0;
-                    p++;
-                    if (*p == 0) p--;
-                }
-                mem += atoll(num);
-                numFound++;
-                break;
-            }
-            i++;
-        }
-        p++;
-    }
-
-    return numFound > 0 ? mem : -1;
 }
 
 BootAnimation::BootAnimation() : Thread(false), mZip(NULL)
@@ -412,6 +379,35 @@ status_t BootAnimation::readyToRun() {
             ((access(getAnimationFileName(IMG_SYS), R_OK) == 0) &&
             ((zipFile = ZipFileRO::open(getAnimationFileName(IMG_SYS))) != NULL))) {
         mZip = zipFile;
+    }
+
+    // Preload the bootanimation zip on memory, so we don't stutter
+    // when showing the animation
+    FILE* fd;
+    if (encryptedAnimation && access(SYSTEM_ENCRYPTED_BOOTANIMATION_FILE, R_OK) == 0)
+        fd = fopen(SYSTEM_ENCRYPTED_BOOTANIMATION_FILE, "r");
+    else if (access(OEM_BOOTANIMATION_FILE, R_OK) == 0)
+        fd = fopen(OEM_BOOTANIMATION_FILE, "r");
+    else if (access(SYSTEM_BOOTANIMATION_FILE, R_OK) == 0)
+        fd = fopen(SYSTEM_BOOTANIMATION_FILE, "r");
+    else
+        return NO_ERROR;
+
+    if (fd != NULL) {
+        // We could use readahead..
+        // ... if bionic supported it :(
+        //readahead(fd, 0, INT_MAX);
+        void *crappyBuffer = malloc(2*1024*1024);
+        if (crappyBuffer != NULL) {
+            // Read all the zip
+            while (!feof(fd))
+                fread(crappyBuffer, 1024, 2*1024, fd);
+
+            free(crappyBuffer);
+        } else {
+            ALOGW("Unable to allocate memory to preload the animation");
+        }
+        fclose(fd);
     }
 
     return NO_ERROR;
@@ -706,24 +702,7 @@ bool BootAnimation::movie()
         const Animation::Part& part(animation.parts[i]);
         const size_t fcount = part.frames.size();
 
-        /*calculate if we need to runtime save memory
-        * condition: runtime free memory is less than the textures that will used.
-        * needSaveMem default to be false
-        */
-        GLint mMaxTextureSize;
-        bool needSaveMem = false;
-        GLuint mTextureid;
-        glGetIntegerv(GL_MAX_TEXTURE_SIZE, &mMaxTextureSize);
-        //ALOGD("freemem:%ld, %d", getFreeMemory(), mMaxTextureSize);
-        if(getFreeMemory() < mMaxTextureSize * mMaxTextureSize * fcount / 1024) {
-            ALOGD("Use save memory method, maybe small fps in actual.");
-            needSaveMem = true;
-            glGenTextures(1, &mTextureid);
-            glBindTexture(GL_TEXTURE_2D, mTextureid);
-            glTexParameterx(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-            glTexParameterx(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-        }
 
         for (int r=0 ; !part.count || r<part.count ; r++) {
             // Exit any non playuntil complete parts immediately
@@ -789,11 +768,6 @@ bool BootAnimation::movie()
             if(exitPending() && !part.count)
                 break;
         }
-
-        if (needSaveMem) {
-            glDeleteTextures(1, &mTextureid);
-        }
-
     }
 
     ALOGD("waiting for media player to complete.");
