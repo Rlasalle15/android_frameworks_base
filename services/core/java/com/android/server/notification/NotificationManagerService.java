@@ -819,13 +819,13 @@ public class NotificationManagerService extends SystemService {
         }
     };
 
-    class LEDSettingsObserver extends ContentObserver {
+    class SettingsObserver extends ContentObserver {
         private final Uri NOTIFICATION_LIGHT_PULSE_URI
                 = Settings.System.getUriFor(Settings.System.NOTIFICATION_LIGHT_PULSE);
         private final Uri ENABLED_NOTIFICATION_LISTENERS_URI
                 = Settings.Secure.getUriFor(Settings.Secure.ENABLED_NOTIFICATION_LISTENERS);
 
-        LEDSettingsObserver(Handler handler) {
+        SettingsObserver(Handler handler) {
             super(handler);
         }
 
