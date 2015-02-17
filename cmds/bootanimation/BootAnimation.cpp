@@ -56,6 +56,8 @@
 #include <media/mediaplayer.h>
 #include <media/IMediaHTTPService.h>
 
+#include <hardware/power.h>
+
 #include "BootAnimation.h"
 #include "AudioPlayer.h"
 
@@ -703,6 +705,8 @@ bool BootAnimation::movie()
         const size_t fcount = part.frames.size();
 
 
+
+        setPowerHint(frameDuration * 1000 * fcount);
 
         for (int r=0 ; !part.count || r<part.count ; r++) {
             // Exit any non playuntil complete parts immediately
