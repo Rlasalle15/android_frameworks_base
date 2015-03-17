@@ -2075,7 +2075,17 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             }
         }
 
-        final boolean hasArtwork = artworkBitmap != null;
+        // apply user lockscreen image
+        if (mMediaMetadata == null && backdropBitmap == null) {
+            WallpaperManager wm = (WallpaperManager)
+                    mContext.getSystemService(Context.WALLPAPER_SERVICE);
+            if (wm != null) {
+                backdropBitmap = wm.getKeyguardBitmap();
+            }
+        }
+
+        final boolean hasBackdrop = backdropBitmap != null;
+        mKeyguardShowingMedia = hasBackdrop;
 
         if ((hasArtwork || DEBUG_MEDIA_FAKE_ARTWORK)
                 && (mState == StatusBarState.KEYGUARD || mState == StatusBarState.SHADE_LOCKED)) {
@@ -3386,6 +3396,11 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         updateNotifications();
         resetUserSetupObserver();
         setControllerUsers();
+
+        WallpaperManager wm = (WallpaperManager)
+                mContext.getSystemService(Context.WALLPAPER_SERVICE);
+        wm.forgetLoadedKeyguardWallpaper();
+        updateMediaMetaData(true);
     }
 
     private void setControllerUsers() {
