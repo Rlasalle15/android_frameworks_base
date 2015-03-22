@@ -911,16 +911,6 @@ public final class RemoteConnection {
     /**
      * @hide
      */
-    void setCallProperties(int callProperties) {
-        mCallProperties = callProperties;
-        for (Callback c : mCallbacks) {
-            c.onCallPropertiesChanged(this, callProperties);
-        }
-    }
-
-    /**
-     * @hide
-     */
     void setDestroyed() {
         if (!mCallbacks.isEmpty()) {
             // Make sure that the callbacks are notified that the call is destroyed first.
