@@ -113,7 +113,4 @@
     <!-- In WiFi AP notification -->
     <string name="notify_turn_wifi_ap_off_title">Turn off Wi-Fi Tether</string>
 
-    <!-- Torch tile -->
-    <uses-permission android:name="android.permission.ACCESS_TORCH_SERVICE" />
-
 </resources>
