@@ -378,6 +378,14 @@ public final class Call {
         }
 
         /**
+         * @return the time the Call object was created
+         * {@hide}
+         */
+        public long getCreateTimeMillis() {
+            return mCreateTimeMillis;
+        }
+
+        /**
          * @return Information about any calling gateway the {@code Call} may be using.
          */
         public GatewayInfo getGatewayInfo() {

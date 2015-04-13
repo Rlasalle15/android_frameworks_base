@@ -788,7 +788,6 @@ public abstract class PackageManager {
      * if the system failed to install the theme because aapt could not compile the app
      * @hide
      */
-    @SystemApi
     public static final int INSTALL_FAILED_THEME_AAPT_ERROR = -400;
 
     /**
@@ -799,7 +798,6 @@ public abstract class PackageManager {
      * apps.
      * @hide
      */
-    @SystemApi
     public static final int INSTALL_FAILED_THEME_IDMAP_ERROR = -401;
 
     /**
@@ -810,7 +808,6 @@ public abstract class PackageManager {
      * apps.
      * @hide
      */
-    @SystemApi
     public static final int INSTALL_FAILED_THEME_UNKNOWN_ERROR = -402;
 
     /**
