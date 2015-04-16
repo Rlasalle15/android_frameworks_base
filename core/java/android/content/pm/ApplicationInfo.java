@@ -589,7 +589,8 @@ public class ApplicationInfo extends PackageItemInfo implements Parcelable {
     public int installLocation = PackageInfo.INSTALL_LOCATION_UNSPECIFIED;
 
     /**
-     * True when the application's rendering should be hardware accelerated.
+     * Is given application theme agnostic, i.e. behaves properly when default theme is changed.
+     * {@hide}
      */
     public boolean isThemeable = false;
 
@@ -631,7 +632,6 @@ public class ApplicationInfo extends PackageItemInfo implements Parcelable {
         }
         pw.println(prefix + "enabled=" + enabled + " targetSdkVersion=" + targetSdkVersion
                 + " versionCode=" + versionCode);
-        pw.println(prefix + "hardwareAccelerated=" + hardwareAccelerated);
         if (manageSpaceActivityName != null) {
             pw.println(prefix + "manageSpaceActivityName="+manageSpaceActivityName);
         }
