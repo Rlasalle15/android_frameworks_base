@@ -186,6 +186,7 @@ public final class RemoteConference {
         return mConnectionCapabilities;
     }
 
+    /** @hide */
     public final int getCallProperties() {
         return mCallProperties;
     }
