@@ -5422,6 +5422,28 @@ public class PackageManagerService extends IPackageManager.Stub {
             }
         }
 
+        // If we're only installing presumed-existing packages, require that the
+        // scanned APK is both already known and at the path previously established
+        // for it.  Previously unknown packages we pick up normally, but if we have an
+        // a priori expectation about this package's install presence, enforce it.
+        if ((scanFlags & SCAN_REQUIRE_KNOWN) != 0) {
+            PackageSetting known = mSettings.peekPackageLPr(pkg.packageName);
+            if (known != null) {
+                if (DEBUG_PACKAGE_SCANNING) {
+                    Log.d(TAG, "Examining " + pkg.codePath
+                            + " and requiring known paths " + known.codePathString
+                            + " & " + known.resourcePathString);
+                }
+                if (!pkg.applicationInfo.getCodePath().equals(known.codePathString)
+                        || !pkg.applicationInfo.getResourcePath().equals(known.resourcePathString)) {
+                    throw new PackageManagerException(INSTALL_FAILED_PACKAGE_CHANGED,
+                            "Application package " + pkg.packageName
+                            + " found at " + pkg.applicationInfo.getCodePath()
+                            + " but expected at " + known.codePathString + "; ignoring.");
+                }
+            }
+        }
+
         // Initialize package source and resource directories
         File destCodeFile = new File(pkg.applicationInfo.getCodePath());
         File destResourceFile = new File(pkg.applicationInfo.getResourcePath());
