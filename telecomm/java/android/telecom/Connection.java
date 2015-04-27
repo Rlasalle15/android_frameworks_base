@@ -1229,20 +1229,6 @@ public abstract class Connection implements IConferenceable {
     }
 
     /**
-     * Sets the connection's {@link CallProperties}.
-     *
-     * @param callProperties The new call properties.
-     */
-    public final void setCallProperties(int callProperties) {
-        if (mCallProperties != callProperties) {
-            mCallProperties = callProperties;
-            for (Listener l : mListeners) {
-                l.onCallPropertiesChanged(this, mCallProperties);
-            }
-        }
-    }
-
-    /**
      * Tears down the Connection object.
      */
     public final void destroy() {
