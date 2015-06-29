@@ -1975,6 +1975,9 @@
 
     <!-- Flag specifying whether VT is available on device -->
     <bool name="config_device_vt_available">false</bool>
+    
+     <!-- Flag specifying whether WFC over IMS is available on device -->
+    <bool name="config_device_wfc_ims_available">false</bool>
 
     <!-- Flag specifying whether VT should be available for carrier: independent of
          carrier provisioning. If false: hard disabled. If true: then depends on carrier
