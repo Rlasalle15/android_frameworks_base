@@ -17,7 +17,6 @@ package com.android.keyguard;
 
 import android.app.admin.DevicePolicyManager;
 import android.content.Context;
-import android.telephony.SubscriptionManager;
 import android.telephony.TelephonyManager;
 
 import com.android.internal.telephony.IccCardConstants;
@@ -76,14 +75,21 @@ public class KeyguardSecurityModel {
     }
 
     SecurityMode getSecurityMode() {
-        KeyguardUpdateMonitor monitor = KeyguardUpdateMonitor.getInstance(mContext);
+        KeyguardUpdateMonitor updateMonitor = KeyguardUpdateMonitor.getInstance(mContext);
+        IccCardConstants.State simState = IccCardConstants.State.UNKNOWN;
         SecurityMode mode = SecurityMode.None;
+        for (int i = 0; i < updateMonitor.getNumPhones(); i++) {
+            int subId = updateMonitor.getSubIdByPhoneId(i);
+            simState = updateMonitor.getSimState(subId);
+            if (simState == IccCardConstants.State.PIN_REQUIRED
+                || simState == IccCardConstants.State.PUK_REQUIRED) {
+                break;
+            }
+        }
 
-        if (SubscriptionManager.isValidSubscriptionId(
-                monitor.getNextSubIdForState(IccCardConstants.State.PIN_REQUIRED))) {
+        if (simState == IccCardConstants.State.PIN_REQUIRED) {
             mode = SecurityMode.SimPin;
-        } else if (SubscriptionManager.isValidSubscriptionId(
-                    monitor.getNextSubIdForState(IccCardConstants.State.PUK_REQUIRED))
+        } else if (simState == IccCardConstants.State.PUK_REQUIRED
                 && mLockPatternUtils.isPukUnlockScreenEnable()) {
             mode = SecurityMode.SimPuk;
         } else {
