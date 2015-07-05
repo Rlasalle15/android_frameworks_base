@@ -899,7 +899,6 @@
          config to 7. -->
     <integer name="config_deviceHardwareWakeKeys">64</integer>
 
-
     <!-- Minimum screen brightness setting allowed by the power manager.
          The user is forbidden from setting the brightness below this level. -->
     <integer name="config_screenBrightnessSettingMinimum">10</integer>
@@ -1894,6 +1893,8 @@
          on the current state of the device.
          Each item must be one of the following strings:
          "power" = Power off
+         "reboot" = Reboot
+         "screenshot" = Take screenshot
          "settings" = An action to launch settings
          "airplane" = Airplane mode toggle
          "bugreport" = Take bug report, if available
@@ -1903,6 +1904,7 @@
     <string-array translatable="false" name="config_globalActionsList">
         <item>power</item>
         <item>reboot</item>
+        <item>screenshot</item>
         <item>airplane</item>
         <item>bugreport</item>
         <item>users</item>
@@ -1972,14 +1974,19 @@
 
     <!-- Flag specifying whether VT is available on device -->
     <bool name="config_device_vt_available">false</bool>
-    
-     <!-- Flag specifying whether WFC over IMS is available on device -->
-    <bool name="config_device_wfc_ims_available">false</bool>
 
     <!-- Flag specifying whether VT should be available for carrier: independent of
          carrier provisioning. If false: hard disabled. If true: then depends on carrier
          provisioning, availability etc -->
     <bool name="config_carrier_vt_available">false</bool>
+
+    <!-- Flag specifying whether WFC over IMS is available on device -->
+    <bool name="config_device_wfc_ims_available">false</bool>
+
+    <!-- Flag specifying whether WFC over IMS should be available for carrier: independent of
+         carrier provisioning. If false: hard disabled. If true: then depends on carrier
+         provisioning, availability etc -->
+    <bool name="config_carrier_wfc_ims_available">false</bool>
 
     <bool name="config_networkSamplingWakesDevice">true</bool>
 
@@ -2351,6 +2358,10 @@
 
     <!-- The list of components which should be automatically disabled. -->
     <string-array name="config_disabledComponents" translatable="false">
+    </string-array>
+
+    <!-- The list of components which should be forced to be enabled. -->
+    <string-array name="config_forceEnabledComponents" translatable="false">
     </string-array>
 
     <!-- Boolean to enable stk functionality on Samsung phones -->
