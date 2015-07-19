@@ -8,9 +8,9 @@
 LOCAL_PATH := frameworks/base/data/sounds
 
 # Simple files that do not require renaming
-ALARM_FILES := Argon Carbon Helium Krypton Neon Oxygen Osmium Platinum Timer
-NOTIFICATION_FILES := Ariel Ceres Carme Elara Europa Iapetus Io Rhea Salacia Titan Tethys
-RINGTONE_FILES := Atria Callisto Dione Ganymede Luna Oberon Phobos Pyxis Sedna Titania Triton \
+ALARM_FILES := Argon Beep1 Beep2 Beep3 Buzzer Carbon Helium Krypton Neon Oxygen Osmium Platinum Rooster1 Rooster2 Timer
+NOTIFICATION_FILES := Ariel Attention Ceres Carme Elara Europa Iapetus Io Rhea Salacia Titan Tethys
+RINGTONE_FILES := Atria Callisto Digital1 Digital2 Digital3 Dione Ganymede Greed Luna Oberon Phobos Pyxis Sedna Titania Triton \
 	Umbriel
 EFFECT_FILES := Effect_Tick KeypressReturn KeypressInvalid KeypressDelete KeypressSpacebar KeypressStandard \
 	camera_focus Dock Undock Lock Unlock Trusted
