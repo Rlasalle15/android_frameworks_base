@@ -7836,22 +7836,6 @@ public class PackageManagerService extends IPackageManager.Stub {
             mFlags = flags;
             return super.queryIntent(intent, resolvedType,
                     (flags & PackageManager.MATCH_DEFAULT_ONLY) != 0, userId);
-            // Remove protected Application components
-            int callingUid = Binder.getCallingUid();
-            String[] pkgs = getPackagesForUid(callingUid);
-            List<String> packages = (pkgs != null) ? Arrays.asList(pkgs) : Collections.EMPTY_LIST;
-            if (callingUid != Process.SYSTEM_UID &&
-                    (getFlagsForUid(callingUid) & ApplicationInfo.FLAG_SYSTEM) == 0) {
-               Iterator<ResolveInfo> itr = list.iterator();
-                while (itr.hasNext()) {
-                    ActivityInfo activityInfo = itr.next().activityInfo;
-                    if (activityInfo.applicationInfo.protect && (packages == null
-                            || !packages.contains(activityInfo.packageName))) {
-                        itr.remove();
-                    }
-                }
-            }
-            return list;
         }
 
         public List<ResolveInfo> queryIntentForPackage(Intent intent, String resolvedType,
